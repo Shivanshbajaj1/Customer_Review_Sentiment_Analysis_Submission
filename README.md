@@ -10,9 +10,25 @@ This project was developed as part of the **XTRAGRAD AI Internship 2026 – Week
 
 Customer reviews contain valuable information about how people feel about a product or service. Manually analyzing a large number of reviews can be time-consuming.
 
-This project demonstrates a basic sentiment-analysis pipeline that takes customer review text, preprocesses it, converts it into numerical features using **TF-IDF**, and uses **Logistic Regression** to predict the sentiment.
+This project demonstrates a basic **sentiment analysis pipeline** that takes customer review text, preprocesses it, converts the text into numerical features using **TF-IDF**, and uses **Logistic Regression** to classify the sentiment.
 
-### 🔄 Workflow
+The complete process includes text preprocessing, feature extraction, model training, prediction, and performance evaluation.
+
+---
+
+## 🎯 Objective
+
+The objective of this project is to build a simple AI system that predicts whether a customer review is:
+
+* 🟢 **Positive**
+* 🔴 **Negative**
+* 🟡 **Neutral**
+
+The model's performance is evaluated using **accuracy, confusion matrix, and classification report**.
+
+---
+
+## 🔄 Workflow
 
 ```text
 Customer Reviews
@@ -21,238 +37,252 @@ Text Preprocessing
        ↓
 TF-IDF Feature Extraction
        ↓
+Train-Test Split
+       ↓
 Logistic Regression
        ↓
 Sentiment Prediction
        ↓
 Model Evaluation
-🎯 Objective
+       ↓
+Accuracy + Confusion Matrix + Classification Report
+```
 
-The objective of this project is to build a simple AI system that predicts whether a customer review is:
+---
 
-🟢 Positive
-🔴 Negative
-🟡 Neutral
+## 🛠️ Technologies Used
 
-The project also evaluates the model's performance using accuracy, confusion matrix, and classification report.
+### Programming Language
 
-🛠️ Technologies Used
-Programming Language
-Python
-Libraries & Tools
-Pandas
-Regular Expressions (re)
-Scikit-learn
-Jupyter Notebook
-Machine Learning & NLP Techniques
-Text Preprocessing
-TF-IDF Vectorization
-Logistic Regression
-Train-Test Split
-Sentiment Classification
-Accuracy Evaluation
-Confusion Matrix
-Classification Report
-📂 Project Structure
-Customer-Review-Sentiment-Analysis/
+* **Python**
+
+### Libraries & Tools
+
+* **Pandas**
+* **Regular Expressions (`re`)**
+* **Scikit-learn**
+* **Jupyter Notebook**
+
+### Machine Learning & NLP Techniques
+
+* Text Preprocessing
+* TF-IDF Vectorization
+* Logistic Regression
+* Train-Test Split
+* Sentiment Classification
+* Accuracy Evaluation
+* Confusion Matrix
+* Classification Report
+
+---
+
+## 📂 Project Structure
+
+```text
+Customer_Review_Sentiment_Analysis_Submission/
 │
 ├── Customer_Review_Sentiment_Analysis.ipynb
 ├── customer_reviews.csv
 ├── final_predictions.png
 └── README.md
-📊 Dataset
+```
 
-The project uses a small custom dataset containing 30 customer reviews.
+### File Description
 
-Sentiment	Number of Reviews
-Positive	10
-Negative	10
-Neutral	10
-Total	30
+| File                                       | Description                                                                                |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `Customer_Review_Sentiment_Analysis.ipynb` | Jupyter Notebook containing data preprocessing, model training, prediction, and evaluation |
+| `customer_reviews.csv`                     | Dataset containing customer reviews and their sentiment labels                             |
+| `final_predictions.png`                    | Screenshot/image showing the final prediction results                                      |
+| `README.md`                                | Project documentation                                                                      |
+
+---
+
+## 📊 Dataset
+
+The project uses a small custom dataset containing **30 customer reviews**.
+
+| Sentiment   | Number of Reviews |
+| ----------- | ----------------: |
+| 🟢 Positive |                10 |
+| 🔴 Negative |                10 |
+| 🟡 Neutral  |                10 |
+| **Total**   |            **30** |
 
 The dataset contains two columns:
 
-review
-sentiment
-🧹 Text Preprocessing
+| Column      | Description                                     |
+| ----------- | ----------------------------------------------- |
+| `review`    | Text of the customer review                     |
+| `sentiment` | Sentiment label: Positive, Negative, or Neutral |
 
-The review text is cleaned before training the machine learning model.
+---
 
-Preprocessing Steps
-Converting text to lowercase
-Removing non-letter characters
-Removing extra spaces
-Example
+## 🧹 Text Preprocessing
 
-Original Review:
+Before training the machine learning model, the review text is cleaned and prepared.
 
-"The Product Is AMAZING!!!"
+### Preprocessing Steps
 
-After Preprocessing:
+1. Convert text to **lowercase**
+2. Remove **non-letter characters**
+3. Clean the review text for feature extraction
 
-"the product is amazing"
-🔢 TF-IDF Feature Extraction
+This preprocessing helps create a more consistent representation of the input text.
 
-TF-IDF (Term Frequency-Inverse Document Frequency) is used to convert text into numerical feature vectors that can be processed by the machine learning model.
+---
 
-TF-IDF gives higher importance to words that are useful for distinguishing documents while reducing the importance of words that appear very commonly across documents.
+## 🔢 TF-IDF Feature Extraction
 
-In this project, the TF-IDF vectorizer is fitted only on the training data and then used to transform the test data.
+After preprocessing, the text is converted into numerical features using **TF-IDF (Term Frequency-Inverse Document Frequency)**.
 
-This approach helps prevent information from the test set from leaking into the training process.
+TF-IDF assigns importance to words based on:
 
-🤖 Machine Learning Model
-Logistic Regression
+* How frequently a word appears in a review
+* How common or rare the word is across all reviews
 
-The project uses Logistic Regression as the classification model.
+This converts textual data into numerical values that can be used by the machine learning model.
 
-Logistic Regression was selected as a simple baseline model for text classification when combined with TF-IDF features.
+---
 
-model = LogisticRegression(max_iter=1000)
-model.fit(X_train_tfidf, y_train)
-🧪 Train-Test Split
+## 🤖 Machine Learning Model
 
-The dataset is divided into:
+### Logistic Regression
 
-80% Training Data
-20% Testing Data
+**Logistic Regression** is used as the classification algorithm.
 
-A fixed random state is used for reproducibility.
+The model is trained on the TF-IDF features and learns patterns associated with the three sentiment categories:
 
-train_test_split(
-    X,
-    y,
-    test_size=0.20,
-    random_state=42,
-    stratify=y
-)
+```text
+Positive
+Negative
+Neutral
+```
 
-The use of stratify=y helps maintain the class distribution between the training and testing sets.
+A **train-test split** is used to separate the data into training and testing sets.
 
-📈 Results
+---
 
-The trained model achieved:
+## 📈 Model Evaluation
 
-Test Accuracy
+The trained model is evaluated using the following metrics:
 
-50.00%
+### Accuracy
 
-The model was evaluated using:
+Measures the percentage of correctly classified reviews.
 
-Accuracy
-Confusion Matrix
-Classification Report
+### Confusion Matrix
 
-Because the dataset contains only 30 reviews, the results should be considered a basic educational demonstration rather than a production-level sentiment-analysis system.
+Shows the number of:
 
-🔍 Testing on New Reviews
+* Correct predictions
+* Incorrect predictions
+* Misclassifications between sentiment categories
 
-The trained model was also tested on three new customer reviews.
+### Classification Report
 
-Customer Review	Prediction
-Amazing product and fast delivery!	Positive
-The quality is terrible and disappointing.	Negative
-The package arrived today.	Neutral
+Provides common classification metrics such as:
 
-These examples demonstrate how the trained model can be used to predict sentiment for previously unseen text.
+* **Precision**
+* **Recall**
+* **F1-score**
 
-💡 Example Use Cases
+These metrics provide a better understanding of the model's performance for each sentiment class.
 
-Sentiment analysis can help companies:
+---
 
-Monitor customer feedback
-Identify negative customer experiences
-Measure customer satisfaction
-Analyze product reviews
-Summarize large amounts of textual feedback
-📚 Key Learning Outcomes
+## 🖼️ Prediction Results
 
-Through this project, I learned how to:
+The project includes a screenshot of the final predictions and results:
 
-Work with textual datasets
-Perform basic text preprocessing
-Apply NLP techniques to machine learning
-Convert text into numerical features using TF-IDF
-Train a classification model
-Generate sentiment predictions
-Evaluate machine learning performance
-Understand the limitations of small datasets
-⚠️ Limitations
+```text
+final_predictions.png
+```
 
-This project is intentionally simple and has several limitations:
+The predictions demonstrate how the trained model classifies customer reviews into **Positive, Negative, or Neutral** categories.
 
-Very small dataset of only 30 reviews
-Basic text preprocessing
-Limited training examples for each sentiment
-No advanced NLP techniques
-Model performance may vary with new types of reviews
+---
 
-A larger and more diverse dataset would be required to build a more reliable real-world sentiment-analysis system.
+## 🚀 How to Run the Project
 
-🚀 Future Improvements
+### 1. Clone the Repository
 
-Possible improvements include:
+```bash
+git clone https://github.com/Shivanshbajaj1/Customer_Review_Sentiment_Analysis_Submission.git
+```
 
-Using a much larger and more diverse dataset
-Adding stopword removal and lemmatization
-Trying models such as SVM, Random Forest, or Naive Bayes
-Hyperparameter tuning
-Using word embeddings
-Experimenting with transformer-based models
-Creating a Streamlit web interface
-Deploying the sentiment-analysis system online
-📝 Assignment Questions
-1. What is Sentiment Analysis?
+### 2. Navigate to the Project Directory
 
-Sentiment analysis is the process of analyzing text and identifying the opinion or emotional tone expressed in it.
+```bash
+cd Customer_Review_Sentiment_Analysis_Submission
+```
 
-In this project, customer reviews are classified into Positive, Negative, or Neutral categories.
+### 3. Install Required Libraries
 
-2. Why is Sentiment Analysis useful for companies?
+```bash
+pip install pandas scikit-learn jupyter
+```
 
-Companies can automatically analyze large numbers of customer reviews to identify positive feedback, negative experiences, and neutral comments.
+### 4. Open the Jupyter Notebook
 
-This can help them understand customer opinions and monitor feedback more efficiently.
+```bash
+jupyter notebook
+```
 
-3. What is NLP?
+Open:
 
-Natural Language Processing (NLP) is a field of Artificial Intelligence that enables computers to process, analyze, and understand human language.
+```text
+Customer_Review_Sentiment_Analysis.ipynb
+```
 
-4. What is TF-IDF?
+### 5. Run the Notebook
 
-TF-IDF stands for Term Frequency-Inverse Document Frequency.
+Execute the notebook cells in order to:
 
-It is a technique used to convert text into numerical features while giving importance to words that help distinguish one document from another.
+* Load the dataset
+* Preprocess the reviews
+* Generate TF-IDF features
+* Train the Logistic Regression model
+* Predict sentiments
+* Evaluate the model
 
-5. Which model was used?
+---
 
-Logistic Regression was used as the machine learning classification model for sentiment prediction.
+## 📌 Key Learning Outcomes
 
-6. What accuracy was achieved?
+Through this project, the following concepts were implemented:
 
-The model achieved 50.00% accuracy on the held-out test set.
+* Understanding basic **NLP workflows**
+* Cleaning and preprocessing text data
+* Converting text into numerical features using **TF-IDF**
+* Applying **Logistic Regression** for classification
+* Splitting data into training and testing sets
+* Evaluating a machine learning classification model
+* Understanding confusion matrices and classification reports
 
-👨‍💻 Author
+---
 
-Shivansh Bajaj
+## 🔮 Future Improvements
 
-B.Tech CSE (AI & ML)
+The project can be extended by:
 
-📜 Internship
+* Increasing the dataset size
+* Using a larger and more diverse review dataset
+* Applying advanced NLP preprocessing
+* Comparing multiple machine learning algorithms
+* Using **word embeddings** or transformer-based models
+* Deploying the model as a web application
 
-This project was completed as part of the:
+---
 
-XTRAGRAD AI Internship 2026 – Foundation Track
+## 👨‍💻 Author
 
-Week 2 Mini AI Assignment
+**Shivansh Bajaj**
 
-Internship Start Date: 1 September 2026
+GitHub: [Shivanshbajaj1](https://github.com/Shivanshbajaj1)
 
-⭐ Project Highlights
-Beginner-friendly NLP project
-Text classification using machine learning
-TF-IDF based feature extraction
-Logistic Regression classifier
-Positive / Negative / Neutral sentiment prediction
-Model evaluation using standard metrics
-Built as part of the XTRAGRAD AI Internship 2026
+---
+
+## ⭐ Project
+
+This project was created for learning and demonstrating the fundamentals of **NLP, Machine Learning, and Sentiment Analysis**.
