@@ -28,7 +28,7 @@ Sentiment Prediction
 Model Evaluation
 
 
-🎯 Objective
+🎯 ##Objective
 
 Build a simple AI system that predicts whether a customer review is:
 
@@ -38,7 +38,7 @@ Neutral
 
 The project also evaluates the model's performance using accuracy, confusion matrix, and classification report.
 
-🛠️ Technologies Used
+🛠️## Technologies Used
 Python
 Pandas
 Regular Expressions (re)
@@ -53,7 +53,9 @@ Sentiment Classification
 Accuracy Evaluation
 Confusion Matrix
 Classification Report
-📂 Project Structure
+
+
+📂 ##Project Structure
 Customer-Review-Sentiment-Analysis/
 │
 ├── Customer_Review_Sentiment_Analysis.ipynb
@@ -99,7 +101,7 @@ It gives higher importance to words that are useful for distinguishing between d
 
 The TF-IDF vectorizer is fitted only on the training data and then used to transform the test data.
 
-🤖 Machine Learning Model
+🤖 ##Machine Learning Model
 Logistic Regression
 
 The project uses Logistic Regression as the classification model.
@@ -124,7 +126,7 @@ train_test_split(
     random_state=42,
     stratify=y
 )
-📈 Results
+📈 ##Results
 
 The model achieved:
 
@@ -138,7 +140,7 @@ Classification Report
 
 Because the dataset contains only 30 reviews, the results should be considered a basic demonstration rather than a production-level sentiment-analysis system.
 
-🔍 Testing on New Reviews
+🔍 ##Testing on New Reviews
 
 The trained model was also tested on three new reviews:
 
@@ -170,7 +172,8 @@ Train a classification model
 Generate sentiment predictions
 Evaluate machine learning performance
 Understand the limitations of small datasets
-⚠️ Limitations
+
+⚠️ ##Limitations
 
 This project is intentionally simple and has several limitations:
 
@@ -182,7 +185,7 @@ Model performance may vary with new types of reviews
 
 A larger and more diverse dataset would be required for a more reliable real-world system.
 
-🚀 Future Improvements
+🚀 ##Future Improvements
 
 Possible improvements include:
 
@@ -219,13 +222,13 @@ Logistic Regression was used as a basic classification model for sentiment predi
 
 The model achieved 50.00% accuracy on the held-out test set.
 
-👨‍💻 Author
+👨‍💻 ##Author
 
 Shivansh Bajaj
 
 B.Tech CSE (AI & ML)
 
-📜 Internship
+📜 ##Internship
 
 This project was completed as part of the:
 
